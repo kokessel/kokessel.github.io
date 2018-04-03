@@ -1,0 +1,188 @@
+﻿@import 'https://fonts.googleapis.com/css?family=Muli';
+@import 'https://fonts.googleapis.com/css?family=Euphoria+Script';
+
+@white: #fff;
+@offwhite: #f7f7f7;
+@gray: #868686;
+@lightgray: #f1f1f1;
+@victorianlilac: #B68EC5;
+@sagegreen: #8B9476;
+
+.gradient (@origin: top, @fallback: @white, @start: @white, @stops, @url) {
+    background-color: @fallback;
+    background: -webkit-linear-gradient(@origin, @start, @stops), @url;
+    background: -moz-linear-gradient(@origin, @start, @stops), @url;
+    background: -ms-linear-gradient(@origin, @start, @stops), @url;
+    background: -o-linear-gradient(@origin, @start, @stops), @url;
+    background: linear-gradient(@origin, @start, @stops), @url;
+    background-size: cover;
+}
+
+.cursive() {
+    font-family: 'Euphoria Script', cursive;
+}
+
+.background-image-with-gradient-overlay (@url) {
+    .gradient(top, #444, rgba(69, 69, 69, 0.25), rgba(0,0,0,0.75), url(@url));
+}
+
+.transition(@duration: .5s) {
+    -webkit-transition: all @duration ease-in-out;
+    -moz-transition: all @duration ease-in-out;
+    -o-transition: all @duration ease-in-out;
+    transition: all @duration ease-in-out;
+}
+
+html, body {
+    width: 100%;
+}
+
+/* Wrapping element */
+.body-content {
+    margin-top: 56.9px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    .cursive() !important;
+}
+
+* {
+    font-family: 'Muli', sans-serif;
+}
+
+nav {
+    &.bg-faded {
+        background: @white;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    &.topnav {
+        ul {
+            display: inline-block;
+        }
+        li {
+            font-weight: 600;
+            font-size: 1.1em;
+
+            a {
+                -webkit-transition: color ease-in-out 100ms;
+                -moz-transition: color ease-in-out 100ms;
+                -o-transition: color ease-in-out 100ms;
+                transition: color ease-in-out 100ms;
+            }
+        }
+    }
+}
+
+.section-wrapper {
+    &.first {
+        .background-image-with-gradient-overlay('../img/bg6.jpg');
+        background-position-y: center;
+        background-size: cover;
+
+        .container-wrapper {
+            padding: 10rem 0;
+        }
+    }
+
+    &.offwhite {
+        background: @offwhite;
+    }
+
+    &.darkgrey {
+        background: #333;
+
+        h1, h2, h3, h4, h5, h6, p, a, span, div {
+            color: @gray;
+        }
+    }
+
+    .container-wrapper {
+        padding: 3rem 0;
+    }
+
+    .hero * {
+        .cursive();
+        text-align: center;
+
+        h1 {
+            font-size: 6em;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 3.25em;
+        }
+
+        h3 {
+            font-size: 2em;
+        }
+
+        h1, h2, h3 {
+            color: @white;
+            text-shadow: 0px 2px 2px rgba(50, 50, 50, 0.7);
+        }
+    }
+
+    h1 {
+        font-size: 3em;
+        font-weight: bold;
+    }
+
+    .img-thumbnail {
+        border-radius: 0px;
+    }
+
+    p.lead {
+        font-weight: 600;
+    }
+
+    .row {
+        margin: 25px 15px;
+    }
+
+    a {
+        &:hover {
+            color: @sagegreen;
+            text-decoration: none;
+        }
+
+        color: @victorianlilac;
+        .transition(.1s)
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    border-bottom: 1px solid @lightgray;
+}
+
+.navbar-light .navbar-nav .active > .nav-link, 
+.navbar-light .navbar-nav .active > .nav-link:hover, 
+.navbar-light .navbar-nav .nav-link.active,  
+.navbar-light .navbar-nav .nav-link.active:hover, 
+.navbar-light .navbar-nav .nav-link.open,  
+.navbar-light .navbar-nav .nav-link.open:hover, 
+.navbar-light .navbar-nav .open > .nav-link, 
+.navbar-light .navbar-nav .open > .nav-link:hover, 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: @victorianlilac !important;
+}
+
+.navbar-light .navbar-nav .active > .nav-link:focus, 
+.navbar-light .navbar-nav .nav-link.active:focus, 
+.navbar-light .navbar-nav .nav-link.open:focus, 
+.navbar-light .navbar-nav .nav-link:focus, 
+.navbar-light .navbar-nav .open > .nav-link:focus {
+
+}
+
+// Extra small devices (portrait phones, less than 544px)
+@media (max-width: 800px) {
+    .section-wrapper {
+        &.first {
+            background-position-x: center;
+        }
+    }
+}
