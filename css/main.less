@@ -1,0 +1,82 @@
+@import 'normalize.less';
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700,900');
+
+* {
+    font-family: "Open Sans", sans-serif !important;
+}
+::selection {
+    background: #000;
+}
+::-moz-selection {
+    background: #000;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+#wrapper {
+    min-height: 100%;
+    display: none;
+    background: #1f1f1f;
+    /* Old browsers */
+    
+    background: -moz-linear-gradient(top, #1f1f1f 0%, #161616 100%);
+    /* FF3.6+ */
+    
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f1f1f), color-stop(100%, #161616));
+    /* Chrome,Safari4+ */
+    
+    background: -webkit-linear-gradient(top, #1f1f1f 0%, #161616 100%);
+    /* Chrome10+,Safari5.1+ */
+    
+    background: -o-linear-gradient(top, #1f1f1f 0%, #161616 100%);
+    /* Opera 11.10+ */
+    
+    background: -ms-linear-gradient(top, #1f1f1f 0%, #161616 100%);
+    /* IE10+ */
+    
+    background: linear-gradient(to bottom, #1f1f1f 0%, #161616 100%);
+    /* W3C */
+}
+#coming-soon {
+    width: 340px;
+    position: absolute;
+    height: 130px;
+    left: 50%;
+    top: 50%;
+    margin-top: -65px;
+    margin-left: -170px;
+    color: #dbdbdb;
+    text-align: center;
+    line-height: 0.85em;
+    border: 3px solid;
+    visibility: hidden;
+}
+#coming-soon h1#title {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 20px;
+    color: #eee;
+    visibility: hidden;
+}
+span.green {
+    color: #d2ff52;
+}
+a {
+    color: #efefef;
+}
+a:hover {
+    color: #d2ff52;
+}
+#description {
+    visibility: hidden;
+}
+#links {
+    visibility: hidden;
+}
