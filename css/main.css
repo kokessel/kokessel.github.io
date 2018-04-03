@@ -412,14 +412,14 @@ body {
   color: #eee;
   visibility: hidden;
 }
-span.green {
-  color: #d2ff52;
+span.red {
+  color: #C72623;
 }
 a {
   color: #efefef;
 }
 a:hover {
-  color: #d2ff52;
+  color: #C72623;
 }
 #description {
   visibility: hidden;

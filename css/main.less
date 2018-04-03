@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700,900');
 
+@red: #C72623;
+
 * {
     font-family: "Open Sans", sans-serif !important;
 }
@@ -65,14 +67,14 @@ body {
     color: #eee;
     visibility: hidden;
 }
-span.green {
-    color: #d2ff52;
+span.red {
+    color: @red;
 }
 a {
     color: #efefef;
 }
 a:hover {
-    color: #d2ff52;
+    color: @red;
 }
 #description {
     visibility: hidden;
