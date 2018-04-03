@@ -28,13 +28,9 @@ jQuery(function ($) {
 
     $('[data-fade]').fadeInOrder({fadeSpeed: 100});
 
-    figlet('Greetings!', 'doom', function (err, data) {
+    figlet('Greetings!', 'Doom', function (err, data) {
         if (!err) {
             console.info(data);
-            console.info('I\'m always open to discussions surrounding new opportunities (remote or in the Lancaster, PA area). Shoot me an email at: info@korykessel.com.');
-            console.info('Proudly hosted by Microsoft Azure - this site is an Express Node app! Woo!');
         }
     });
-
-
 });
