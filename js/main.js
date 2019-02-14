@@ -1,36 +1,19 @@
-jQuery(function ($) {
-    $.fn.fadeInOrder = function (options) {
+const getFade = (div) => parseInt(div.getAttribute('data-fade'));
 
-        var settings = $.extend({
-            fadeSpeed: 300
-        }, options);
+const dataFades = [].slice.call(document.querySelectorAll('[data-fade]')).sort((a, b) => getFade(a) - getFade(b)).forEach(df => setTimeout(() => df.classList.remove('is-paused'), 500 * getFade(df)));;
 
-        $.fn.getFade = function () {
-            return parseInt(this.data('fade'));
-        };
+const doWave = () => {
+    let i, n, s = '';
 
-        $.fn.sortByFade = function () {
-            var ret = $(this).sort(function (a, b) {
-                a = $(a).getFade();
-                b = $(b).getFade();
-                return a > b ? 1 : b > a ? -1 : 0;
-            });
+    for (i = 0; i < 10; i++) {
+        n = Math.floor(Math.sin((Date.now() / 200) + (i / 2)) * 4) + 4;
 
-            return ret;
-        };
+        s += String.fromCharCode(0x2581 + n);
+    }
 
-        var r = $(this).sortByFade().each(function (i) {
-            $(this).delay(settings.fadeSpeed * i).css('visibility', 'visible').hide().fadeIn(settings.fadeSpeed);
-        });
+    window.location.hash = s;
 
-        return r;
-    };
+    setTimeout(doWave, 50);
+}
 
-    $('[data-fade]').fadeInOrder({fadeSpeed: 100});
-
-    figlet('Greetings!', 'Doom', function (err, data) {
-        if (!err) {
-            console.info(data);
-        }
-    });
-});
+doWave();

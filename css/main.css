@@ -375,7 +375,6 @@ body {
 }
 #wrapper {
   min-height: 100%;
-  display: none;
   background: #1f1f1f;
   /* Old browsers */
   background: -moz-linear-gradient(top, #1f1f1f 0%, #161616 100%);
@@ -403,14 +402,12 @@ body {
   text-align: center;
   line-height: 0.85em;
   border: 3px solid;
-  visibility: hidden;
 }
 #coming-soon h1#title {
   font-weight: 800;
   font-size: 36px;
   line-height: 20px;
   color: #eee;
-  visibility: hidden;
 }
 span.red {
   color: #C72623;
@@ -421,9 +418,15 @@ a {
 a:hover {
   color: #C72623;
 }
-#description {
-  visibility: hidden;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
-#links {
-  visibility: hidden;
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in 1 forwards;
+}
+.is-paused {
+  animation-play-state: paused;
 }

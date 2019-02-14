@@ -1,0 +1,26 @@
+{
+  "name": "kokessel.github.io",
+  "version": "1.0.0",
+  "description": "Personal site",
+  "private": true,
+  "dependencies": {
+    "js": "^0.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kokessel/kokessel.github.io.git"
+  },
+  "author": "",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/kokessel/kokessel.github.io/issues"
+  },
+  "homepage": "https://github.com/kokessel/kokessel.github.io#readme"
+}

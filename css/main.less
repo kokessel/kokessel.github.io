@@ -24,7 +24,6 @@ body {
 }
 #wrapper {
     min-height: 100%;
-    display: none;
     background: #1f1f1f;
     /* Old browsers */
     
@@ -58,14 +57,12 @@ body {
     text-align: center;
     line-height: 0.85em;
     border: 3px solid;
-    visibility: hidden;
 }
 #coming-soon h1#title {
     font-weight: 800;
     font-size: 36px;
     line-height: 20px;
     color: #eee;
-    visibility: hidden;
 }
 span.red {
     color: @red;
@@ -76,9 +73,18 @@ a {
 a:hover {
     color: @red;
 }
-#description {
-    visibility: hidden;
-}
-#links {
-    visibility: hidden;
-}
+
+@keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn .5s ease-in 1 forwards;
+  }
+  
+  .is-paused {
+    animation-play-state: paused;
+  }

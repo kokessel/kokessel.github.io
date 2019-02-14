@@ -325,3 +325,4 @@ ASALocalRun/
 
 # VS Code
 .vscode/
+.cache/
