@@ -1,10 +1,12 @@
-const dataFadeAttribute = 'data-fade'
+import "../css/main.less";
 
-const getFade = (div: Element) => 
-    parseInt(div.getAttribute(dataFadeAttribute));
+const dataFadeAttribute = "data-fade";
 
-[]
-    .slice
-    .call(document.querySelectorAll(`[${dataFadeAttribute}]`))
-    .sort((a: Element, b: Element) => getFade(a) - getFade(b))
-    .forEach((df: Element) => setTimeout(() => df.classList.remove('is-paused'), 500 * getFade(df)));;
+const getFade = (div: Element) => parseInt(div.getAttribute(dataFadeAttribute));
+
+[].slice
+	.call(document.querySelectorAll(`[${dataFadeAttribute}]`))
+	.sort((a: Element, b: Element) => getFade(a) - getFade(b))
+	.forEach((df: Element) =>
+		setTimeout(() => df.classList.remove("is-paused"), 500 * getFade(df))
+	);
