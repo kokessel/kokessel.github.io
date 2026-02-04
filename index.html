@@ -1,40 +1,219 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Kory Kessel - Software Engineer</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0a0a0a">
+	<meta name="author" content="Kory Kessel">
+
+	<title>Kory Kessel | Software Engineer</title>
 	<meta name="description"
-		content="Kory Kessel - Software engineer living in Harrisburg, PA. Microsoft full-stack with emphasis on learning new and exciting technologies." />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-	<style></style>
+		content="Kory Kessel is a full-stack software engineer based in Harrisburg, PA, specializing in .NET, C#, and modern software.">
+	<meta name="keywords"
+		content="software engineer, full-stack developer, .NET, C#, Microsoft technologies, Harrisburg PA">
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="Kory Kessel | Full-Stack Software Engineer">
+	<meta property="og:description"
+		content="Full-stack software engineer specializing in .NET, C#, and modern software.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://korykessel.com">
+	<style>
+		@font-face {
+			font-family: 'Fira Code';
+			src: url('fonts/FiraCodeNerdFont-Regular.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Fira Code', 'Fira Code Nerd Font', monospace;
+			min-height: 100vh;
+			background: #0a0a0a;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			top: -20%;
+			left: -20%;
+			width: 140%;
+			height: 140%;
+			background:
+				radial-gradient(circle at 20% 30%, rgba(220, 38, 38, 0.12) 0%, transparent 50%),
+				radial-gradient(circle at 80% 70%, rgba(153, 27, 27, 0.08) 0%, transparent 40%),
+				radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.06) 0%, transparent 45%);
+			pointer-events: none;
+			z-index: 0;
+			animation: orbFloat 15s ease-in-out infinite;
+		}
+
+		body::after {
+			content: "";
+			position: fixed;
+			top: 30%;
+			left: 70%;
+			width: 60%;
+			height: 60%;
+			background: radial-gradient(circle at center, rgba(220, 38, 38, 0.1) 0%, transparent 50%);
+			pointer-events: none;
+			z-index: 0;
+			animation: orbPulse 12s ease-in-out infinite;
+		}
+
+		@keyframes orbFloat {
+
+			0%,
+			100% {
+				transform: translate(0, 0) rotate(0deg);
+			}
+
+			25% {
+				transform: translate(2%, -2%) rotate(5deg);
+			}
+
+			50% {
+				transform: translate(-1%, 3%) rotate(-3deg);
+			}
+
+			75% {
+				transform: translate(-2%, -1%) rotate(2deg);
+			}
+		}
+
+		@keyframes orbPulse {
+
+			0%,
+			100% {
+				transform: scale(1) translate(0, 0);
+				opacity: 0.6;
+			}
+
+			50% {
+				transform: scale(1.3) translate(-10%, -5%);
+				opacity: 1;
+			}
+		}
+
+		.card {
+			background: rgba(255, 255, 255, 0.03);
+			backdrop-filter: blur(20px);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 24px;
+			padding: 36px 32px;
+			text-align: center;
+			max-width: 400px;
+			margin: 20px;
+			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+		}
+
+		h1 {
+			font-size: 42px;
+			font-weight: 700;
+			color: #ffffff;
+			margin-bottom: 8px;
+			background: linear-gradient(135deg, #dc2626, #991b1b);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: fadeIn 0.8s ease-out;
+		}
+
+		p {
+			color: #a1a1a1;
+			font-size: 17px;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			animation: fadeIn 0.8s ease-out 0.3s both;
+		}
+
+		a {
+			color: #dc2626;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: #ffffff;
+		}
+
+		.links {
+			display: flex;
+			gap: 12px;
+			justify-content: center;
+			animation: fadeIn 0.8s ease-out 0.6s both;
+		}
+
+		.links a {
+			width: 52px;
+			height: 52px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			border-radius: 14px;
+			color: #ffffff;
+			font-size: 22px;
+			transition: all 0.3s ease;
+		}
+
+		.links a:hover {
+			background: #dc2626;
+			border-color: #dc2626;
+			transform: translateY(-2px);
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@media (max-width: 480px) {
+			.card {
+				padding: 28px 20px;
+			}
+
+			h1 {
+				font-size: 32px;
+			}
+
+			p {
+				font-size: 15px;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<div id="wrapper" data-fade="0" class="fade-in is-paused">
-		<div id="coming-soon" data-fade="1" class="fade-in is-paused">
-			<h1 id="title" title="KoryKessel.com" data-fade="2" class="fade-in is-paused">
-				<span class="red">Kory Kessel</span>
-			</h1>
-			<p id="description" data-fade="3" class="fade-in is-paused">
-				Software Engineer in
-				<strong>
-					<a href="https://www.google.com/maps/place/Harrisburg,+PA">Harrisburg, PA.</a>
-				</strong>
-			</p>
-			<p id="links" data-fade="4" class="fade-in is-paused">
-				<a href="https://www.linkedin.com/in/kory-kessel" target="_blank">
-					<i class="fab fa-linkedin fa-2x"></i>
-				</a>
-				&nbsp;
-				<a href="mailto:info@korykessel.com">
-					<i class="fas fa-envelope fa-2x"></i>
-				</a>
-			</p>
+	<div class="card">
+		<h1>Kory Kessel</h1>
+		<p>
+			Software Engineer in
+			<a href="https://www.google.com/maps/place/Harrisburg,+PA">Harrisburg, PA</a>
+		</p>
+		<div class="links">
+			<a href="https://www.linkedin.com/in/kory-kessel" target="_blank" aria-label="LinkedIn">in</a>
+			<a href="mailto:info@korykessel.com" aria-label="Email">@</a>
 		</div>
 	</div>
-	<script src="js/bundle.js"></script>
 </body>
 
 </html>
