@@ -2,12 +2,12 @@
 
 ## Project Overview
 
-Ultra-minimalist personal landing page. Single HTML file with inline CSS and zero JavaScript. Directs traffic to email and LinkedIn.
+Interactive 3D business card personal landing page. Single HTML file with inline CSS and minimal JavaScript for 3D parallax effects. Directs traffic to email and LinkedIn.
 
 ## Project Structure
 
 ```
-├── index.html        # Single self-contained HTML file (CSS inlined)
+├── index.html        # Single self-contained HTML file (CSS/JS inlined)
 ├── fonts/            # Custom font files
 │   └── FiraCodeNerdFont-Regular.ttf
 ├── favicon.ico       # Site favicon
@@ -19,7 +19,7 @@ Ultra-minimalist personal landing page. Single HTML file with inline CSS and zer
 
 ## Build Commands
 
-**No build required.** This is a single static HTML file with inline CSS.
+**No build required.** This is a single static HTML file with inline CSS and JavaScript.
 
 To preview locally:
 ```bash
@@ -33,55 +33,61 @@ Then open `http://localhost:8000`
 ### HTML
 
 - Single self-contained `index.html` file
-- CSS is **inlined** in `<style>` tags in `<head>`
-- No external CSS or JS files for the main site
+- CSS and JavaScript are **inlined** (no external files)
 - Semantic HTML5 elements
-- Accessibility attributes on links (`aria-label`)
+- Accessibility attributes on links (`aria-label`, `target="_blank"`)
 
 ### CSS
 
 - All styles inlined in `<style>` block
-- Uses CSS custom properties for colors where helpful
-- Mobile-first responsive design
+- Uses CSS custom properties for dynamic values (e.g., `--mouse-x`, `--mouse-y`)
+- Mobile-first responsive design with `@media` queries
 - **Local custom font**: Fira Code Nerd Font (monospace with ligatures)
-- CSS animations use `animation-fill-mode: both` for staggered effects
+- `transform-style: preserve-3d` for 3D effects
+- `backdrop-filter: blur()` for glassmorphism
 
-**Example:**
+**Key CSS Features:**
 ```css
-@font-face {
-	font-family: 'Fira Code';
-	src: url('fonts/FiraCodeNerdFont-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-body {
-	font-family: 'Fira Code', monospace;
-	min-height: 100vh;
-	background: #0a0a0a;
+.card {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    backdrop-filter: blur(20px);
 }
 ```
 
 ### JavaScript
 
-- **Zero JavaScript** for the main landing page
-- All animations are pure CSS (`@keyframes`)
-- No external dependencies
+- **Minimal JavaScript** for 3D parallax tilt effect only
+- Mouse tracking for dynamic card rotation
+- Glare effect positioned based on mouse coordinates
+- No external dependencies or libraries
+
+**Key JavaScript Pattern:**
+```javascript
+document.addEventListener('mousemove', (e) => {
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+```
 
 ### Naming Conventions
 
-- **CSS classes**: kebab-case (e.g., `fade-in`)
-- **IDs**: camelCase (e.g., `coming-soon`)
+- **CSS classes**: kebab-case (e.g., `card-content`, `corner-tl`)
+- **IDs**: camelCase (e.g., `card`)
+- **CSS custom properties**: kebab-case with double-dash prefix
 
 ### Design System
 
-- Background: Pure black (`#0a0a0a`) with subtle red gradient orbs
-- Card: Glassmorphism with `backdrop-filter: blur()`
-- Primary accent: Red gradient (`#dc2626` to `#991b1b`)
-- Text primary: `#ffffff` (white)
-- Text secondary: `#a1a1a1` (gray)
-- Border radius: 24px (card), 14px (buttons)
-- Font: Fira Code Nerd Font (monospace with developer ligatures)
+- **Background**: Animated gradient (navy blues cycling)
+- **Card**: Glassmorphism with `backdrop-filter: blur()`
+- **Primary accent**: Coral/salmon (#e94560)
+- **Text primary**: White (#ffffff)
+- **Text secondary**: Light gray (#b8b8b8)
+- **Labels**: Muted gray (#7a7a7a)
+- **Border radius**: 24px (card), 12px (buttons)
+- **Font**: Fira Code Nerd Font (monospace with developer ligatures)
+- **3D Depth**: Multiple `translateZ()` layers for parallax
 
 ## Legacy Files
 
@@ -89,9 +95,12 @@ body {
 
 ## Notes
 
-- Glassmorphism effect uses `backdrop-filter` (modern browsers only)
-- Text links use simple text characters ("in", "@") instead of icon fonts
-- No external dependencies or CDNs required (except local font file)
-- Fully self-contained single-file website
-- GitHub Pages deployment ready
+- **3D Tilt**: Card follows mouse cursor with subtle rotation (X/Y axis)
+- **Glare Effect**: Dynamic light reflection follows mouse position
+- **Depth Layers**: Content elements at different Z-depths for parallax
+- **Animated Background**: CSS gradient animation cycles through navy blues
+- **Responsive**: Mobile-optimized with reduced padding and font sizes
+- **No external dependencies** or CDNs required (except local font file)
+- **Fully self-contained** single-file website
+- **GitHub Pages** deployment ready
 - **Font**: Fira Code Nerd Font must be present in `fonts/` directory
