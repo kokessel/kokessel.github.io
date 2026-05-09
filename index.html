@@ -3,285 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0F3460">
     <meta name="author" content="Kory Kessel">
-    <title>Kory Kessel | Software Engineer</title>
-    <meta name="description" content="Kory Kessel is a full-stack software engineer based in Harrisburg, PA, specializing in .NET, C#, and modern software.">
-    <meta name="keywords" content="software engineer, full-stack developer, .NET, C#, Microsoft technologies, Harrisburg PA">
-    <meta property="og:title" content="Kory Kessel | Full-Stack Software Engineer">
-    <meta property="og:description" content="Full-stack software engineer specializing in .NET, C#, and modern software.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://korykessel.com">
+    <title>Kory Kessel</title>
     <style>
         @font-face {
             font-family: 'Fira Code';
             src: url('fonts/FiraCodeNerdFont-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Fira Code', 'Fira Code Nerd Font', monospace;
+            margin: 0;
             min-height: 100vh;
-            background: linear-gradient(-45deg, #0f3460, #16213e, #1a1a2e, #0f3460);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            perspective: 1000px;
+            background: #1a1a1a;
+            color: #e8e8e8;
+            font-family: 'Fira Code', monospace;
         }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .scene {
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
-            transform-style: preserve-3d;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 48px 40px;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-            position: relative;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 24px;
-            background: linear-gradient(
-                135deg,
-                rgba(233, 69, 96, 0.1) 0%,
-                transparent 50%,
-                rgba(83, 52, 131, 0.1) 100%
-            );
-            pointer-events: none;
-            transform: translateZ(1px);
-        }
-
-        .card-content {
-            transform: translateZ(30px);
-        }
-
-        .card-glare {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 24px;
-            background: radial-gradient(
-                circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-                rgba(255, 255, 255, 0.1) 0%,
-                transparent 60%
-            );
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card:hover .card-glare {
-            opacity: 1;
-        }
-
-        h1 {
-            font-size: 42px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .title {
-            color: #e94560;
-            font-size: 16px;
-            margin-bottom: 32px;
-            transform: translateZ(20px);
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(233, 69, 96, 0.3),
-                transparent
-            );
-            margin: 24px 0;
-            transform: translateZ(25px);
-        }
-
-        .info-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 16px 0;
-            color: #b8b8b8;
-            font-size: 15px;
-            transform: translateZ(15px);
-        }
-
-        .info-label {
-            color: #7a7a7a;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            min-width: 80px;
-        }
-
-        .info-value {
-            color: #ffffff;
-        }
-
-        .links {
-            display: flex;
-            gap: 16px;
-            margin-top: 32px;
-            transform: translateZ(40px);
-        }
-
-        .link {
-            flex: 1;
-            padding: 14px 20px;
-            background: rgba(233, 69, 96, 0.1);
-            border: 1px solid rgba(233, 69, 96, 0.3);
-            border-radius: 12px;
-            color: #ffffff;
-            text-decoration: none;
-            text-align: center;
-            font-size: 14px;
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(233, 69, 96, 0.3), rgba(83, 52, 131, 0.3));
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .link:hover {
-            background: rgba(233, 69, 96, 0.2);
-            border-color: rgba(233, 69, 96, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .link:hover::before {
-            opacity: 1;
-        }
-
-        .corner {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(233, 69, 96, 0.2);
-            pointer-events: none;
-        }
-
-        .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-        .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-        .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-        .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 32px 24px;
-            }
-            h1 {
-                font-size: 32px;
-            }
-            .links {
-                flex-direction: column;
-            }
-        }
+        h1 { margin: 0 0 4px; font-size: 2rem; font-weight: 400; }
+        .location { color: #888; margin: 0 0 24px; }
+        .links a { margin: 0 8px; text-decoration: none; }
+        .email { color: #e0d98a; }
+        .linkedin { color: #6ba4d4; }
     </style>
 </head>
 <body>
-    <div class="scene">
-        <div class="card" id="card">
-            <div class="card-glare"></div>
-            <div class="corner corner-tl"></div>
-            <div class="corner corner-tr"></div>
-            <div class="corner corner-bl"></div>
-            <div class="corner corner-br"></div>
-            <div class="card-content">
-                <h1>Kory Kessel</h1>
-                <div class="title">Software Engineer</div>
-                
-                <div class="divider"></div>
-                
-                <div class="info-row">
-                    <span class="info-label">Location</span>
-                    <span class="info-value">Harrisburg, PA</span>
-                </div>
-                
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/kory-kessel" target="_blank" class="link">LinkedIn</a>
-                    <a href="mailto:info@korykessel.com" class="link">Email</a>
-                </div>
-            </div>
-        </div>
+    <h1>Kory Kessel</h1>
+    <p class="location">Harrisburg, PA</p>
+    <div class="links">
+        <a class="linkedin" href="https://www.linkedin.com/in/kory-kessel">LinkedIn</a>
+        <a class="email" href="mailto:info@korykessel.com">Email</a>
     </div>
-
-    <script>
-        const card = document.getElementById('card');
-        const glare = card.querySelector('.card-glare');
-
-        document.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            
-            const percentX = (x / rect.width) * 100;
-            const percentY = (y / rect.height) * 100;
-            glare.style.setProperty('--mouse-x', `${percentX}%`);
-            glare.style.setProperty('--mouse-y', `${percentY}%`);
-        });
-
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = 'rotateX(0) rotateY(0)';
-        });
-    </script>
 </body>
 </html>
