@@ -4,45 +4,649 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Kory Kessel">
-    <title>Kory Kessel</title>
+    <meta name="description" content="Kory Kessel - Developer in Harrisburg, PA">
+    <title>KORY KESSEL // SOFTWARE ENGINEER // HARRISBURG, PA</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◉</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'Liberation Serif';
-            src: url('fonts/LiberationSerif-BoldItalic.ttf') format('truetype');
-            font-weight: bold;
-            font-style: italic;
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #0f0f0f;
+            --accent-yellow: #a8ff00;
+            --accent-pink: #ff2d6a;
+            --accent-white: #ffffff;
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+            --text-dim: #555555;
+            --border-subtle: rgba(168, 255, 0, 0.15);
         }
-        body {
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            95% { opacity: 0.9; }
+            96% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+.header {
+            margin-bottom: 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        
+
+        .status-bar {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-yellow);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.pink {
+            background: var(--accent-pink);
+        }
+
+        .title {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            letter-spacing: -1px;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .title span {
+            display: block;
+            color: var(--accent-yellow);
+            -webkit-text-stroke: 1px var(--accent-yellow);
+        }
+
+        .subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--accent-yellow) 20%,
+                var(--accent-pink) 50%,
+                var(--accent-yellow) 80%,
+                transparent
+            );
+            margin: 60px 0;
+        }
+
+        
+            position: relative;
+            padding: 24px;
+            background: rgba(17, 17, 17, 0.8);
+            border: 1px solid rgba(255, 45, 106, 0.2);
+        }
+
+        .info-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), transparent);
+        }
+
+        .block-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .block-label::before {
+            content: '>';
+            color: var(--accent-pink);
+        }
+
+        .info-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .info-content p {
+            margin-bottom: 16px;
+        }
+
+        .info-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .data-points {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .data-point {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-point:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .data-value {
+            font-size: 12px;
+            color: var(--text-primary);
+        }
+
+        .data-value.highlight {
+            color: var(--accent-yellow);
+        }
+
+        
+
+        .main-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: #1a1a1a;
-            color: #e8e8e8;
-            font-family: 'Fira Code', monospace;
         }
-        h1 { 
-            margin: 0 0 4px; 
-            font-size: 2rem; 
-            font-weight: bold;
-            font-family: 'Liberation Serif', serif;
-            font-style: italic;
+
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .links-grid {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 500px) {
+            .links-grid {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        .link-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: rgba(17, 17, 17, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 45, 106, 0.1),
+                transparent
+            );
+            transition: left 0.5s ease;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            border-color: var(--accent-pink);
+            transform: translateX(8px);
+            box-shadow:
+                -8px 0 20px rgba(255, 45, 106, 0.2),
+                inset 0 0 30px rgba(255, 45, 106, 0.05);
+        }
+
+        .link-card:hover .link-icon {
+            color: var(--accent-pink);
+            transform: scale(1.2);
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--text-dim);
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .link-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .link-info {
+            flex: 1;
+        }
+
+        .link-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .link-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .link-arrow {
+            color: var(--text-dim);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            color: var(--accent-pink);
+            transform: translateX(4px);
+        }
+
+        .footer {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            align-items: center;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
-        .location { color: #888; margin: 0 0 24px; }
-        .links a { margin: 0 8px; text-decoration: none; }
-        .email { color: #e0d98a; }
-        .linkedin { color: #6ba4d4; }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-line::before {
+            content: '>';
+            margin-right: 8px;
+            color: var(--accent-pink);
+        }
+
+        .corner-decoration {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .corner-decoration.top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 1px solid var(--accent-yellow);
+            border-left: 1px solid var(--accent-yellow);
+        }
+
+        .corner-decoration.top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 1px solid var(--accent-pink);
+            border-right: 1px solid var(--accent-pink);
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 1px solid var(--accent-pink);
+            border-left: 1px solid var(--accent-pink);
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 1px solid var(--accent-yellow);
+            border-right: 1px solid var(--accent-yellow);
+        }
+
+        .avatar-block {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .avatar-frame {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .avatar-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--accent-yellow);
+            animation: flicker 10s infinite;
+        }
+
+        .avatar-frame::after {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid var(--accent-pink);
+        }
+
+        .avatar-inner {
+            position: absolute;
+            inset: 16px;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-icon {
+            font-size: 40px;
+            color: var(--accent-pink);
+            opacity: 0.8;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 45, 106, 0.1);
+            border: 1px solid rgba(255, 45, 106, 0.3);
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-pink);
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-yellow);
+            animation: pulse 1s infinite;
+        }
+
+        .info-block {
+            padding: 0;
+            border: none;
+            background: transparent;
+        }
+
+        .info-block::before {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .status-bar {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .title {
+                letter-spacing: 2px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .corner-decoration {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Kory Kessel</h1>
-    <p class="location">Harrisburg, PA</p>
-    <div class="links">
-        <a class="linkedin" href="https://www.linkedin.com/in/kory-kessel">LinkedIn</a>
-        <a class="email" href="mailto:info@korykessel.com">Email</a>
+    <div class="noise"></div>
+    <div class="scanline"></div>
+
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+    <div class="container">
+<div class="main-content">
+        <header class="header">
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>ACTIVE</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-dot pink"></span>
+                    <span>PORTFOLIO</span>
+                </div>
+                <div class="status-item">
+                    <span>SECTOR-07</span>
+                </div>
+            </div>
+
+            <h1 class="title"><span>KORY</span> KESSEL</h1>
+            <p class="subtitle">software engineer // harrisburg, pa</p>
+        </header>
+
+        <div class="links-section">
+            <div class="block-label">Connect</div>
+            <div class="links-grid">
+                <a href="mailto:info@korykessel.com" class="link-card" aria-label="Send email">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div class="link-info">
+                        <div class="link-title">Email</div>
+                        <div class="link-desc">info@korykessel.com</div>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/kory-kessel" target="_blank" rel="noopener noreferrer" class="link-card" aria-label="View LinkedIn profile">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                    </div>
+                    <div class="link-info">
+                        <div class="link-title">LinkedIn</div>
+                        <div class="link-desc">Connect professionally</div>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+            </div>
+        </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-status terminal-line">SYSTEM ONLINE</div>
+            <div>© 2026 KORY KESSEL</div>
+        </footer>
     </div>
 </body>
 </html>
